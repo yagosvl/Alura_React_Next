@@ -6,23 +6,10 @@ import QuizBackground from '../src/components/QuizBackground';
 import Widget from '../src/components/Widget';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
-
-
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colors.primary};
-`
-
-export const QuizContainer = styled.div`
-  width: 100%;
-  max-width: 350px;
-  padding-top: 45px;
-  margin: auto 10%;
-  @media screen and (max-width: 500px){
-    margin: auto;
-    padding: 15px;
-  }
-`;
+import QuizContainer from '../src/components/QuizContainer';
+import QuizLogo from '../src/components/QuizLogo';
+import Input from '../src/components/Input';
+import Button from '../src/components/Button';
 
 export default function Home() {
   const router = useRouter();
@@ -30,6 +17,7 @@ export default function Home() {
   return (
     <QuizBackground BackgroundImage={db.bg}>
       <QuizContainer>
+        <QuizLogo />
         <Widget>
           <Widget.Header>
             <h1>Magic The Gathering</h1>
@@ -42,17 +30,15 @@ export default function Home() {
               }
             }
             >
-              <input
+              <Input
+                name="nomeUsuario"
                 placeholder="Nome do jogador"
-                onChange={
-                  function (event) {
-                    setName(event.target.value);
-                  }
-                }
+                onChange={(event) => setName(event.target.value)}
+                value={name}
               />
-              <button type="submit" disabled={name.length === 0}>
+              <Button type="submit" disabled={name.length === 0}>
                 Jogar
-              </button>
+              </Button>
             </form>
           </Widget.Content>
         </Widget>
